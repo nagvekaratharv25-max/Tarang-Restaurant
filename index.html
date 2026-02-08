@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarang Restaurant | Ganpatipule</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #d35400;
+            --secondary-color: #f39c12;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #fffaf5;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--white);
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://lh3.googleusercontent.com/p/AF1QipOaPl9q1VrngMPtLO-lQLMasrn7c8Vmp1zNgSuO=s1360-w1360-h1020');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--white);
+        }
+
+        /* --- SECTION GENERIC --- */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text h3 {
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+        }
+
+        /* --- MENU SECTION --- */
+        #menu {
+            background-color: #fff;
+        }
+
+        .menu-tabs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .menu-category {
+            margin-bottom: 40px;
+        }
+
+        .category-name {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            border-bottom: 1px dashed #ddd;
+            padding-bottom: 5px;
+        }
+
+        .item-name {
+            font-weight: 500;
+        }
+
+        .item-price {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* --- GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .contact-form button:hover {
+            background: var(--dark-color);
+        }
+
+        .map-container {
+            width: 100%;
+            height: 350px;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 50px 10% 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .footer-col h4 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+
+        .social-icons {
+            margin-top: 15px;
+        }
+
+        .social-icons span {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: #34495e;
+            margin-right: 10px;
+            border-radius: 50%;
+            line-height: 35px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .social-icons span:hover {
+            background: var(--primary-color);
+        }
+
+        .copyright {
+            border-top: 1px solid #34495e;
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: #bdc3c7;
+        }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; height: auto; padding: 15px; }
+            .nav-links { margin-top: 15px; }
+            .nav-links li { margin: 0 10px; }
+            .hero h1 { font-size: 2.5rem; }
+            .contact-container { grid-template-columns: 1fr; }
+            section { padding: 50px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Tarang Restaurant</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <h1>Tarang Restaurant</h1>
+        <p>Authentic Indian & Chinese Cuisine in the heart of Ganpatipule</p>
+        <a href="#menu" class="btn">View Menu</a>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>Our Story</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Quality, Hygiene & Satisfaction</h3>
+                <p>Located in the scenic Ganpatipule, Tarang Restaurant is dedicated to bringing you the finest flavors of Indian and Chinese cuisine. We believe that great food starts with quality ingredients and a passion for cooking.</p>
+                <p>Whether you are a local resident or a traveler visiting the holy temple, our mission is to provide a hygienic, welcoming environment where every meal is a celebration. From our signature Malwani specialties to classic Chinese favorites, we ensure every dish meets the highest standards of taste and freshness.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="section-title">
+            <h2>Our Delicious Menu</h2>
+        </div>
+
+        <div class="menu-tabs">
+            <div class="menu-category">
+                <div class="category-name">Hot Beverages</div>
+                <div class="menu-item"><span class="item-name">Tea</span><span class="item-price">₹30</span></div>
+                <div class="menu-item"><span class="item-name">Masala Tea</span><span class="item-price">₹35</span></div>
+                <div class="menu-item"><span class="item-name">Nescafe Coffee</span><span class="item-price">₹35</span></div>
+                <div class="menu-item"><span class="item-name">Hot Milk</span><span class="item-price">₹50</span></div>
+                <div class="menu-item"><span class="item-name">Bournvita</span><span class="item-price">₹65</span></div>
+
+                <div class="category-name" style="margin-top:30px">Cold Beverages</div>
+                <div class="menu-item"><span class="item-name">Cold Coffee</span><span class="item-price">₹70</span></div>
+                <div class="menu-item"><span class="item-name">Soft Drinks</span><span class="item-price">₹50</span></div>
+                <div class="menu-item"><span class="item-name">Fresh Lime Soda</span><span class="item-price">₹60</span></div>
+                <div class="menu-item"><span class="item-name">Lassi (Sweet / Salted)</span><span class="item-price">₹70</span></div>
+                <div class="menu-item"><span class="item-name">Solkadhi</span><span class="item-price">₹70</span></div>
+                <div class="menu-item"><span class="item-name">Butter Milk</span><span class="item-price">₹60</span></div>
+            </div>
+
+            <div class="menu-category">
+                <div class="category-name">Breakfast (7:30 - 11:00 AM)</div>
+                <div class="menu-item"><span class="item-name">Poha</span><span class="item-price">₹60</span></div>
+                <div class="menu-item"><span class="item-name">Upma</span><span class="item-price">₹60</span></div>
+                <div class="menu-item"><span class="item-name">Idli Sambar</span><span class="item-price">₹70</span></div>
+                <div class="menu-item"><span class="item-name">Medu Wada Sambar</span><span class="item-price">₹80</span></div>
+                <div class="menu-item"><span class="item-name">Masala Dosa</span><span class="item-price">₹90</span></div>
+                <div class="menu-item"><span class="item-name">Misal Pav</span><span class="item-price">₹80</span></div>
+                <div class="menu-item"><span class="item-name">Puri Bhaji</span><span class="item-price">₹90</span></div>
+            </div>
+
+            <div class="menu-category">
+                <div class="category-name">Indian Dishes (Veg)</div>
+                <div class="menu-item"><span class="item-name">Aloo Jeera</span><span class="item-price">₹190</span></div>
+                <div class="menu-item"><span class="item-name">Mix Vegetable</span><span class="item-price">₹230</span></div>
+                <div class="menu-item"><span class="item-name">Veg Kolhapuri</span><span class="item-price">₹230</span></div>
+                <div class="menu-item"><span class="item-name">Kaju Masala</span><span class="item-price">₹300</span></div>
+                <div class="menu-item"><span class="item-name">Paneer Butter Masala</span><span class="item-price">₹300</span></div>
+                <div class="menu-item"><span class="item-name">Dal Tadka</span><span class="item-price">₹170</span></div>
+            </div>
+
+            <div class="menu-category">
+                <div class="category-name">Indian Dishes (Non-Veg)</div>
+                <div class="menu-item"><span class="item-name">Chicken Masala</span><span class="item-price">₹320</span></div>
+                <div class="menu-item"><span class="item-name">Chicken Kolhapuri</span><span class="item-price">₹330</span></div>
+                <div class="menu-item"><span class="item-name">Chicken Tikka Masala</span><span class="item-price">₹360</span></div>
+                <div class="menu-item"><span class="item-name">Egg Masala</span><span class="item-price">₹200</span></div>
+                <div class="menu-item"><span class="item-name">Mutton Masala</span><span class="item-price">A.P.A</span></div>
+            </div>
+
+            <div class="menu-category">
+                <div class="category-name">Chinese Specialties</div>
+                <div class="menu-item"><span class="item-name">Veg Manchurian</span><span class="item-price">₹240</span></div>
+                <div class="menu-item"><span class="item-name">Paneer Chilly</span><span class="item-price">₹320</span></div>
+                <div class="menu-item"><span class="item-name">Chicken 65</span><span class="item-price">₹300</span></div>
+                <div class="menu-item"><span class="item-name">Chicken Lollipop</span><span class="item-price">₹320</span></div>
+                <div class="menu-item"><span class="item-name">Veg Fried Rice</span><span class="item-price">₹220</span></div>
+                <div class="menu-item"><span class="item-name">Chicken Triple Rice</span><span class="item-price">₹370</span></div>
+            </div>
+
+            <div class="menu-category">
+                <div class="category-name">Breads & Thali</div>
+                <div class="menu-item"><span class="item-name">Butter Naan</span><span class="item-price">₹55</span></div>
+                <div class="menu-item"><span class="item-name">Tandoori Roti</span><span class="item-price">₹35</span></div>
+                <div class="menu-item"><span class="item-name">Veg Thali</span><span class="item-price">₹240</span></div>
+                <div class="menu-item"><span class="item-name">Chicken Thali</span><span class="item-price">₹320</span></div>
+                <div class="menu-item"><span class="item-name">Fish Thali (Surmai/Pomfret)</span><span class="item-price">A.P.A</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="section-title">
+            <h2>Gallery</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/p/AF1QipOaPl9q1VrngMPtLO-lQLMasrn7c8Vmp1zNgSuO=s1360-w1360-h1020" alt="Restaurant Interior"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepD4vUt39kcrD65v8xEd-_xfIbcCsbV9imUbnpOpuOhfLo64thAGfafD9I4ERhgK9Ti49fUX0J317-GDfK9uiViZ_ySW7uuqhWBpC-tf_7aRKpnB40q5CoU07qECN0yVvmK_A=s1360-w1360-h1020" alt="Dining Area"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqtpVHgCpOpJlVaQTtZVUQW24t7US-Mqt_BYYPuWZMP8CwvfkXGoppuk0xUlO55kAVuIbouVxzsTwGNWQjwu96VDBkAeAR4J9L8BwORL2ks8jKczlrJ7I-NZ6ONUQId33JnfwhOu_3EOtyB=s1360-w1360-h1020" alt="Tarang Entrance"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/p/AF1QipMbUZ3L_8eNLKOLgq7AG8ClWcH-aZZBH2Wsc8Rk=s1360-w1360-h1020" alt="Food Specialty"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwersSNfTDfBoRW9Ts7czczQgUpa40zvnsRNdo32JFYfkKZWHNej6TxhCK02HQyK1CHdRnGTnAjGiJgAnQwLCQPIloa9uo5X34KtcHnWQQfRZCAyuNLg72R2Zqx9TVkp6-EEwQrZBbw=s1360-w1360-h1020" alt="Restaurant View"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepii54Z0IjA2KaQFaswD4ZmIzVMVnDR1rEb4XFvtAuvinILhQ-BTl9I-qxmeyriiaciSJyyn-O60ZbtJWpTGL5N3R2AzXKD71LzZeIONzOoRtOvBPr5zaX5oXjkoElwPBn6AYr-=s1360-w1360-h1020" alt="Ambience"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerXv0TdE1bi9ijLzkR2sOU-Qwl0qolQgQ_4gnGhUJtZRH0dsfh5L0jnaBlegz60ERVNg4bTYmfXmnL3_1YQZscntNFJNvNuXPtuw-bd3MQumhgG5QjaZ6LsP7KH4IT-oCrpdxWr=s1360-w1360-h1020" alt="Sea View Orientation"></div>
+            <div class="gallery-item"><img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwepaRUB9IFzVwWWcncHlVTl97LI4t3We3sY-X3Vf6tR3FrRwhE7B3flxAid92x8C4WHOf-lkhFWbgy-YTLrJpgqZfD6tvuwC2hj49yV3a-s0YY2av6PMe__Yew8e-CV6XXUPnCng9fRFtH9O=s1360-w1360-h1020" alt="Restaurant Seating"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Visit Us</h3>
+                <p><strong>Address:</strong> Tarang Restaurant, Ganpatipule, Maharashtra 415615</p>
+                <p><strong>Phone:</strong> +91 8378855349</p>
+                
+                <div class="map-container">
+                    <!-- Adjusted Google Maps view centered on Tarang Restaurant -->
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3822.464670691456!2d73.26428911145107!3d17.148120983570267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bea1be30fab32eb%3A0xbf1f097e896b5953!2sTarang%20Restaurant!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <form onsubmit="return false;">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="tel" placeholder="Your Phone Number" required>
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit">Submit Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Tarang Restaurant</h4>
+                <p>Serving traditional flavors with a modern touch. Experience the best of Indian and Chinese cuisine in Ganpatipule.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Opening Hours</h4>
+                <p>Monday - Sunday<br>7:30 AM - 11:00 PM</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <span>FB</span>
+                    <span>IG</span>
+                    <span>TW</span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Tarang Restaurant. All rights reserved. | Ganpatipule, Maharashtra.
+        </div>
+    </footer>
+
+</body>
+</html>
